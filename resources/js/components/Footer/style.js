@@ -5,10 +5,10 @@ export const useStyles = createUseStyles({
         padding: 10,
         display:"flex",
         width:"100%",
-        background:"#9BB662",
+        background:"#645E9D",
         height:50,
         fontSize:18,
-        color:"#434343",
+        color:"#FFFFFF",
         justifyContent:"flex-end",
         alignItems:"center",
     }

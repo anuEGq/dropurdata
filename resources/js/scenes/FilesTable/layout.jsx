@@ -15,17 +15,24 @@ const FilesTable = (props) => {
     const classes = useStyles();
     const location = useLocation();
     const [files, setFiles] = useState([]);
-
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(0);
+    const countPerPage = 3;
     const [tablestate, setTableState] = useState(false);
 
     const cardData = location.state.data;
 
-    const fileType = { fileType: cardData.type };
+    const data = { 
+        'page': page,
+        'countPerPage' : countPerPage,
+        'fileType': cardData.type
+     };
     const getFiles = () => {
         const { files } = axios
-            .post(`http://127.0.0.1:8000/api/getFiles`, fileType)
+            .post(`http://127.0.0.1:8000/api/getFiles`, data)
             .then((res) => {
                 setFiles(res.data.response);
+                setTotal(res.data.total)
             });
     };
     const deleteFile = (file_id) => {
@@ -62,7 +69,7 @@ const FilesTable = (props) => {
     /* On render these page  getFiles api call is called,  this api call again called on each chenge of table state */
     useEffect(() => {
         getFiles();
-    }, [tablestate]);
+    }, [tablestate,page]);
 
     const columns = [
         {
@@ -120,15 +127,22 @@ const FilesTable = (props) => {
     ];
     return (
         <div className={classes.Table}>
-            <DataTableExtensions columns={columns} data={files}>
+            <DataTableExtensions columns={columns} data={files} export={false} print={false}>
                 <DataTable
                     columns={columns}
                     data={files}
                     noHeader
+                    paginationServer
+                    paginationTotalRows={total}
                     defaultSortField="id"
                     defaultSortAsc={false}
                     pagination={true}
                     highlightOnHover
+                    paginationPerPage={countPerPage}
+                    paginationComponentOptions={{
+                      noRowsPerPage: true
+                    }}
+                    onChangePage={(page) => setPage(page-1)}
                 />
             </DataTableExtensions>
         </div>

@@ -27,7 +27,7 @@ export default function KeywordsInput({ ...props }) {
   }, [selectedItem, selectedTags]);
 
   function handleKeyDown(event) {
-    if (event.key === "Enter") {
+    if (event.key === " ") {
       const newSelectedItem = [...selectedItem];
       const duplicatedValues = newSelectedItem.indexOf(
         event.target.value.trim()

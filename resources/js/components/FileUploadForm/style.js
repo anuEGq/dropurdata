@@ -19,5 +19,8 @@ export const useStyles = createUseStyles({
       },
       keywordInpt:{
         marginTop:20
+      },
+      form:{
+        width: "60%"
       }
 });

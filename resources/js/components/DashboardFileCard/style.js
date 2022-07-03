@@ -26,6 +26,6 @@ export const useStyles = createUseStyles({
     },
     cardIcon:{
         fontSize:68,
-        color: "#9BB662"
+        color: "#645E9D"
     }
   });

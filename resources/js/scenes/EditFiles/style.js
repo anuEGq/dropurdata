@@ -22,5 +22,15 @@ export const useStyles = createUseStyles({
     },
     container:{
         width: "88%",
+    },
+    keywordInpt:{
+        marginTop:20
+    },
+    buttonGroup:{
+        display: "flex",
+        justifyContent: "flex-end",
+    },
+    btn : {
+        marginLeft : "20px !important",
     }
 });

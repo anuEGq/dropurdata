@@ -11,7 +11,7 @@ import {selectFileCountData, selectIsFileCountLoading} from "./selectors";
 import { selectSettings, selectIsSettingsLoading } from "../selectors";
 
 
-/*select and action is taken from settings scene */
+/* onInit action from global redux */
 
 import {onInit} from "../redux";
 

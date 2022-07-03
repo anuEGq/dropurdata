@@ -8,6 +8,7 @@ export default function FileUpload(props){
     const classes = useStyles();
     const navigate = useNavigate();
     const {
+        onInit,
         onSubmit,
         isFailed,
         selectedFormats,
@@ -22,7 +23,10 @@ export default function FileUpload(props){
             navigate("/dashboard");
         }
     }
-    
+    /*OnInit - trigger global redux action to get Settings values*/
+    React.useEffect(() => {
+        onInit();
+    }, []);
 
     return(
         <>

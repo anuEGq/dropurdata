@@ -2,7 +2,7 @@ import {createUseStyles} from 'react-jss'
 
 export const useStyles = createUseStyles({
     myButton: {
-      color: 'green',
+      color: 'blue',
       margin: {
         // jss-plugin-expand gives more readable syntax
         top: 5, // jss-plugin-default-unit makes this 5px

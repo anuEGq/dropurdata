@@ -11,7 +11,7 @@ function* submitFile(action) {
     goToDashBoard();
     yield put(submitRequested(false))
   } catch {
-    yield put(onUploadFailed())
+    yield put(onUploadFailed(true))
   }
 
 }

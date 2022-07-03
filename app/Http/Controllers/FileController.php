@@ -26,15 +26,19 @@ class FileController extends Controller
     function getFiles(Request $request){
         $data = $request->all();
         $fileType = $data['fileType']; 
+        $countPerPage = $data['countPerPage']; 
+        $page = $data['page']; 
         if($fileType == "text/html" || $fileType == "text/xml" ){
-            $response = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->Where('file_type',  $fileType)->get();
+            $response = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->Where('file_type',  $fileType)->skip($page)->take($countPerPage)->get();
+            $total = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->Where('file_type',  $fileType)->count();
         }
         else{
             $fileType = preg_split("/[\/]+/", $fileType);
-            $response = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->orWhere('file_type', 'like', '%' . $fileType[0] . '%')->get();
+            $response = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->orWhere('file_type', 'like', '%' . $fileType[0] . '%')->skip($page)->take($countPerPage)->get();
+            $total = DB::table('uploaded_files')->select("file_id as id","file_title as title","description as Description","keywords as keyword","file_ext as FileName","updated_at")->orWhere('file_type', 'like', '%' . $fileType[0] . '%')->count();
         }
        
-        return response()->json(compact('response' ), 200);
+        return response()->json(compact('response','total' ), 200);
     }
 
     //function to delete file from db and storage folder
@@ -61,7 +65,7 @@ class FileController extends Controller
 
         $lib_base ='../resources/xslt/test.xsl';
 
-        $destinationPath = base_path().'/storage/app/public/files'.DIRECTORY_SEPARATOR.$filename;
+        $destinationPath = base_path().'/storage/app/public/files/'.$filename;
         $xml = new \DOMDocument();
         $xml->formatOutput = false;
         $xml->load($destinationPath);
@@ -69,8 +73,6 @@ class FileController extends Controller
         $xsl = new \DOMDocument;
         $xsl->load($lib_base);
 
-        $feed = file_get_contents($destinationPath);
-        $items = simplexml_load_string($feed);
 
         $proc = new \XSLTProcessor();
         $proc->importStyleSheet($xsl);

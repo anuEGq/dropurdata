@@ -1,15 +1,5 @@
 const axios = require("axios");
 
-async function getUser() {
-    try {
-        const response = await axios.get(
-            "https://jsonplaceholder.typicode.com/todos/1"
-        );
-        return response;
-    } catch (error) {
-        throw error;
-    }
-}
 async function getSettings() {
   try {
       const response = await axios.get(
@@ -92,5 +82,14 @@ async function setUser() {
         throw error;
     }
 }
-
+async function getUser() {
+    try {
+        const response = await axios.get(
+            "https://jsonplaceholder.typicode.com/todos/1"
+        );
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 export { getUser,getAllFiles, getAllFileCounts,setUser, uploadFile, setSettings, getSettings };

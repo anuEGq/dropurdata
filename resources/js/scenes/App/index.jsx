@@ -18,7 +18,8 @@ export default function App(){
         <div className={classes.contetSection}>
         <Sidebar/>
         <Routes>
-          <Route  index path="/dashboard" element={<Dashboard/>} /> 
+          <Route  exact path="/" element={<Dashboard/>} /> 
+          <Route  path="/dashboard" element={<Dashboard/>} /> 
           <Route  path="/upload" element={<FileUpload/>} />
           <Route  path="/settings" element={<Settings/>} />
           <Route  path="/files" element={<FilesTable />} />   

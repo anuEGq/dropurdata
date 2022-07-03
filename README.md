@@ -1,5 +1,5 @@
 
-## React Test
+## DropUrData
 
 This project is build using laravel mix, to integrate laravel ui with React.
 
@@ -29,6 +29,5 @@ For run database seeding and migration for this project.
 
 ## Pending Features
 
-- Pagination for the datatables
-- Validation.
+- Pagination for the data table
 - XSL for the xml, that given for test.

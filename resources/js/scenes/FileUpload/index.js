@@ -6,6 +6,8 @@ import {selectUploadActionRequested, selectUploadActionFailed} from "./selectors
 import { connect } from "react-redux";
 import { selectedFormats, selectedFileSize, selectIsSettingsLoading} from "../selectors";
 
+/* onInit action from global redux */
+import {onInit} from "../redux";
 
 //mapStateToprops - inject selected state from selector to corresponding scene as props.
 const mapStateToprops = createStructuredSelector({
@@ -20,6 +22,7 @@ const mapStateToprops = createStructuredSelector({
 //mapDispatchToProps - inject redux action as props to corresponding scene.
 const mapDispatchToProps = (dispatch)=>
     bindActionCreators({
+        onInit,
         onSubmit,
     },  dispatch)
 

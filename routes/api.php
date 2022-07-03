@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\SettingsController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
 
